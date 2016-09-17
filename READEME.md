@@ -1,6 +1,6 @@
 # Electron template
 
-Electron v1.3.1
+Electron v1.4.0
 
 ## Using `serialport`
 
