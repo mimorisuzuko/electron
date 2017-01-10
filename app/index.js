@@ -8,7 +8,7 @@ const createWindow = () => {
 		width: 800,
 		height: 600
 	});
-	mainWindow.loadURL(`file://${__dirname}/dst/index.html`);
+	mainWindow.loadURL(`file://${__dirname}/../dst/index.html`);
 	mainWindow.webContents.openDevTools();
 	mainWindow.on('closed', () => mainWindow = null);
 };
