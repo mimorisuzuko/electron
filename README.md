@@ -1,6 +1,7 @@
 # Electron template
 
-Electron v1.4.0
+* Electron v1.4.0
+* Webpack
 
 ## Using `serialport`
 
