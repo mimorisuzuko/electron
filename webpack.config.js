@@ -46,5 +46,10 @@ module.exports = {
 	externals: {
 		'react': 'React',
 		'react-dom': 'ReactDOM'
-	}
+	},
+	node: {
+		__filename: false,
+		__dirname: false
+	},
+	target: 'electron'
 };

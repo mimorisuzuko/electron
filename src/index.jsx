@@ -6,6 +6,7 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		console.log('new');
+		console.log(__dirname);
 	}
 
 	render() {
