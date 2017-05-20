@@ -4,9 +4,7 @@ const {Component} = React;
 
 class App extends Component {
 	constructor(props) {
-		super(props);
-		console.log('new');
-		console.log(__dirname);
+		super(props);;
 	}
 
 	render() {
