@@ -1,20 +1,22 @@
 # Electron template
 
-* Electron v1.4.0
-* Webpack
-
-## Using `serialport`
-
-Write npm script to `package.json`. `--target=x.x.x` is Electron version.
-
-```
-"postinstall": "cd node_modules/serialport && ./node_modules/.bin/node-pre-gyp rebuild --target=1.3.1 --arch=x64 --dist-url=https://atom.io/download/atom-shell",
-```
+* Electron v1.6.6
+* Webpack v2.5.1
+* React v15.5.4
 
 ## Native Module Error
 
 ```bash
-npm install -g node-gyp
-cd node_modules/${moduleName}
-HOME=~/.electron-gyp node-gyp rebuild --target=`npm view electron version` --arch=x64 --dist http://atom.io/download/atom-shell
+#!/bin/bash
+
+home=`pwd`
+version=`electron -v`
+version=${version:1}
+
+for dir in 'serialport'
+do
+    cd node_modules/$dir
+	HOME=~/.electron-gyp node-gyp rebuild --target=$version --arch=x64 --dist http://atom.io/download/atom-shell
+	cd "$home"
+done
 ```
