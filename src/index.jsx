@@ -1,12 +1,10 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
-const {Component} = React;
+const { Component } = React;
 
 class App extends Component {
 	constructor(props) {
 		super(props);
-		console.log('new');
-		console.log(__dirname);
 	}
 
 	render() {

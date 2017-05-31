@@ -1,6 +1,8 @@
 const webpack = require('webpack');
 const libpath = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { default: ButternutWebpackPlugin } = require('butternut-webpack-plugin');
+
 const dst = 'app/dst';
 
 module.exports = {
@@ -14,15 +16,15 @@ module.exports = {
 			{
 				test: /\.jsx$/,
 				exclude: /node_modules/,
-				loader: 'babel',
+				loader: 'babel-loader',
 				query: {
-					presets: ['react', 'es2015'],
+					presets: ['react'],
 				}
 			}
 		]
 	},
 	resolve: {
-		extensions: ['', '.js', '.jsx']
+		extensions: ['.js', '.jsx']
 	},
 	plugins: [
 		new CleanWebpackPlugin([dst], {
@@ -36,12 +38,7 @@ module.exports = {
 				NODE_ENV: JSON.stringify('production')
 			}
 		}),
-		new webpack.optimize.UglifyJsPlugin({
-			compress: {
-				warnings: false
-			},
-			mangle: true
-		})
+		new ButternutWebpackPlugin({})
 	],
 	externals: {
 		'react': 'React',

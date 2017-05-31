@@ -1,7 +1,7 @@
 {
   "name": "electron-template",
   "version": "0.0.1",
-  "description": "",
+  "description": "electron-template",
   "main": "app/index.js",
   "scripts": {
     "build:pug": "./node_modules/.bin/pug --hierarchy -o app/dst/ src/",
@@ -12,24 +12,25 @@
     "watch:scss": "npm run build:scss -- -w",
     "watch:js": "npm run build:js -- -w",
     "watch": "npm-run-all --parallel watch:*",
-    "start": "electron ."
+    "start": "electron .",
+    "postinstall": "./rebuild.sh"
   },
   "keywords": [],
   "author": "Hiroki Usuba <hrky0206@gmail.com> (http://mimorisuzuko.github.io/)",
   "license": "MIT",
   "devDependencies": {
-    "babel-core": "^6.22.1",
-    "babel-loader": "^6.2.10",
-    "babel-preset-es2015": "^6.22.0",
-    "babel-preset-react": "^6.22.0",
-    "clean-webpack-plugin": "^0.1.15",
-    "node-sass": "^4.4.0",
-    "npm-run-all": "^4.0.1",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-react": "^6.24.1",
+    "butternut-webpack-plugin": "^0.0.6",
+    "clean-webpack-plugin": "^0.1.16",
+    "node-sass": "^4.5.3",
+    "npm-run-all": "^4.0.2",
     "pug-cli": "^1.0.0-alpha6",
-    "webpack": "^1.14.0"
+    "webpack": "^2.6.1"
   },
   "dependencies": {
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
   }
 }
