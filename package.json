@@ -6,7 +6,7 @@
   "scripts": {
     "build:pug": "./node_modules/.bin/pug --hierarchy -o app/dst/ src/",
     "build:scss": "./node_modules/node-sass/bin/node-sass src/index.scss app/dst/index.css --output-style compressed",
-    "build:js": "./node_modules/.bin/webpack",
+    "build:js": "./node_modules/.bin/webpack --config webpack.config.babel.js",
     "build": "npm-run-all build:*",
     "watch:pug": "npm run build:pug -- -w",
     "watch:scss": "npm run build:scss -- -w",
@@ -21,6 +21,7 @@
   "devDependencies": {
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "butternut-webpack-plugin": "^0.1.0",
     "clean-webpack-plugin": "^0.1.16",
@@ -32,5 +33,10 @@
   "dependencies": {
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
+  },
+  "babel": {
+    "plugins": [
+      "transform-es2015-modules-commonjs"
+    ]
   }
 }

@@ -1,11 +1,11 @@
-const webpack = require('webpack');
-const libpath = require('path');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const { default: ButternutWebpackPlugin } = require('butternut-webpack-plugin');
+import webpack from 'webpack';
+import libpath from 'path';
+import CleanWebpackPlugin from 'clean-webpack-plugin';
+import ButternutWebpackPlugin from 'butternut-webpack-plugin';
 
 const dst = 'app/dst';
 
-module.exports = {
+export default {
 	entry: libpath.join(__dirname, 'src/'),
 	output: {
 		path: libpath.join(__dirname, dst),
