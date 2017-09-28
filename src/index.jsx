@@ -1,16 +1,6 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react';
+import { render } from 'react-dom';
+import App from './components/App';
+import './index.scss';
 
-class App extends Component {
-	constructor(props) {
-		super(props);
-	}
-
-	render() {
-		return (
-			<div>Hello, World from React!</div>
-		);
-	}
-}
-
-ReactDOM.render(<App />, document.querySelector('main'));
+render(<App />, document.querySelector('main'));
