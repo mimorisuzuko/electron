@@ -1,11 +1,11 @@
-import { DefinePlugin, HotModuleReplacementPlugin, NamedModulesPlugin, optimize } from 'webpack';
+import { DefinePlugin, HotModuleReplacementPlugin, NamedModulesPlugin, optimize, LoaderOptionsPlugin } from 'webpack';
 import libpath from 'path';
 import CleanWebpackPlugin from 'clean-webpack-plugin';
 import { NODE_ENV, WATCH, isProduction } from './env';
 
 const { UglifyJsPlugin, AggressiveMergingPlugin } = optimize;
 const dst = 'app/dst';
-const generateScopedName = '[name]__[local]';
+const generateScopedName = '[name]__[local]_[hash:base64:5]';
 const context = libpath.join(__dirname, 'src/');
 const presets = ['react'];
 
@@ -21,7 +21,12 @@ const plugins = [
 			NODE_ENV: JSON.stringify(NODE_ENV)
 		}
 	}),
-	new NamedModulesPlugin()
+	new NamedModulesPlugin(),
+	new LoaderOptionsPlugin({
+		options: {
+			context
+		}
+	})
 ];
 
 if (isProduction) {
