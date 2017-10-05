@@ -1,4 +1,4 @@
-import { DefinePlugin, HotModuleReplacementPlugin, NamedModulesPlugin, optimize, LoaderOptionsPlugin } from 'webpack';
+import { DefinePlugin, HotModuleReplacementPlugin, optimize, LoaderOptionsPlugin } from 'webpack';
 import libpath from 'path';
 import CleanWebpackPlugin from 'clean-webpack-plugin';
 import { NODE_ENV, WATCH, isProduction } from './env';
@@ -21,7 +21,6 @@ const plugins = [
 			NODE_ENV: JSON.stringify(NODE_ENV)
 		}
 	}),
-	new NamedModulesPlugin(),
 	new LoaderOptionsPlugin({
 		options: {
 			context
@@ -34,8 +33,9 @@ if (isProduction) {
 	plugins.push(
 		new UglifyJsPlugin({ compress: { warnings: false }, mangle: true }),
 		new AggressiveMergingPlugin(),
-		new HotModuleReplacementPlugin()
 	);
+} else {
+	plugins.push(new HotModuleReplacementPlugin());
 }
 
 const config = {
@@ -48,7 +48,7 @@ const config = {
 	module: {
 		loaders: [
 			{
-				test: /\.jsx$/,
+				test: /\.js(x?)$/,
 				exclude: /node_modules/,
 				loader: 'babel-loader',
 				query: {
