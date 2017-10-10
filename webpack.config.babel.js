@@ -1,9 +1,10 @@
-import { DefinePlugin, HotModuleReplacementPlugin, NamedModulesPlugin, optimize, LoaderOptionsPlugin } from 'webpack';
+import { DefinePlugin, HotModuleReplacementPlugin, optimize, LoaderOptionsPlugin } from 'webpack';
 import libpath from 'path';
 import CleanWebpackPlugin from 'clean-webpack-plugin';
 import { NODE_ENV, WATCH, isProduction } from './env';
+import UglifyJSPlugin from 'uglifyjs-webpack-plugin';
 
-const { UglifyJsPlugin, AggressiveMergingPlugin } = optimize;
+const { AggressiveMergingPlugin } = optimize;
 const dst = 'app/dst';
 const generateScopedName = '[name]__[local]_[hash:base64:5]';
 const context = libpath.join(__dirname, 'src/');
@@ -14,14 +15,13 @@ const plugins = [
 		root: __dirname,
 		verbose: false,
 		dry: false,
-		exclude: ['index.html', 'index.css']
+		exclude: ['index.html']
 	}),
 	new DefinePlugin({
 		'process.env': {
 			NODE_ENV: JSON.stringify(NODE_ENV)
 		}
 	}),
-	new NamedModulesPlugin(),
 	new LoaderOptionsPlugin({
 		options: {
 			context
@@ -30,16 +30,19 @@ const plugins = [
 ];
 
 if (isProduction) {
-	presets.push('es2015');
+	presets.push('es2015', 'stage-3');
 	plugins.push(
-		new UglifyJsPlugin({ compress: { warnings: false }, mangle: true }),
+		new UglifyJSPlugin({
+			uglifyOptions: { compress: { warnings: false }, mangle: true }
+		}),
 		new AggressiveMergingPlugin(),
-		new HotModuleReplacementPlugin()
 	);
+} else {
+	plugins.push(new HotModuleReplacementPlugin());
 }
 
 const config = {
-	entry: context,
+	entry: ['babel-polyfill', context],
 	output: {
 		path: libpath.join(__dirname, dst),
 		publicPath: 'http://localhost:3000/',
@@ -48,7 +51,7 @@ const config = {
 	module: {
 		loaders: [
 			{
-				test: /\.jsx$/,
+				test: /\.js(x?)$/,
 				exclude: /node_modules/,
 				loader: 'babel-loader',
 				query: {
@@ -88,7 +91,6 @@ const config = {
 		__filename: false,
 		__dirname: false
 	},
-	externals: ['electron'],
 	target: 'electron-renderer'
 };
 
