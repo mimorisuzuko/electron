@@ -6,17 +6,10 @@ const { isProduction } = require('../env');
 let browserWindow = null;
 
 const create = () => {
-	const w = new BrowserWindow(Object.assign(
-		{
-			width: 800,
-			height: 600
-		},
-		isProduction ? {} : {
-			webPreferences: {
-				webSecurity: false
-			}
-		})
-	);
+	const w = new BrowserWindow({
+		width: 800,
+		height: 600
+	});
 
 	w.loadURL(isProduction ? `file://${libpath.join(__dirname, 'dst/index.html')}` : 'http://localhost:3000');
 	w.on('closed', () => { browserWindow = null; });
