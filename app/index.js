@@ -1,6 +1,10 @@
 const { app, BrowserWindow } = require('electron');
 const libpath = require('path');
 const { isProduction } = require('../env');
+const {
+	default: installExtension,
+	REACT_DEVELOPER_TOOLS,
+} = require('electron-devtools-installer');
 
 /** @type {Electron.BrowserWindow} */
 let browserWindow = null;
@@ -19,6 +23,7 @@ const create = () => {
 
 app.on('ready', () => {
 	create();
+	installExtension(REACT_DEVELOPER_TOOLS).catch(console.error);
 });
 
 app.on('window-all-closed', () => {
