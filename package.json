@@ -11,7 +11,7 @@
     "watch:js": "WATCH=true ./node_modules/.bin/webpack-dev-server --config webpack.config.babel.js",
     "watch": "npm-run-all --parallel watch:*",
     "start": "electron .",
-    "postinstall": "./rebuild.sh"
+    "postinstall": "npm rebuild"
   },
   "keywords": [],
   "author": "Hiroki Usuba <hrky0206@gmail.com> (http://mimorisuzuko.github.io/)",
