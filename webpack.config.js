@@ -4,7 +4,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = (env, { mode }) => {
 	const dst = 'app/dst';
-	const generateScopedName = '[name]__[lyaocal]_[hash:base64:5]';
+	const generateScopedName = '[name]__[local]_[hash:base64:5]';
 	const context = libpath.join(__dirname, 'src/');
 	const presets = ['react'];
 	const isProduction = mode === 'production';
@@ -44,6 +44,7 @@ module.exports = (env, { mode }) => {
 	}
 
 	return {
+		context,
 		entry: isProduction ?
 			[
 				'babel-polyfill',
