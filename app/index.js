@@ -1,9 +1,11 @@
 const { app, BrowserWindow } = require('electron');
 const libpath = require('path');
-const { env: { NODE_ENV } } = process;
+const {
+	env: { NODE_ENV }
+} = process;
 const {
 	default: installExtension,
-	REACT_DEVELOPER_TOOLS,
+	REACT_DEVELOPER_TOOLS
 } = require('electron-devtools-installer');
 
 /** @type {Electron.BrowserWindow} */
@@ -15,8 +17,14 @@ const create = () => {
 		height: 600
 	});
 
-	w.loadURL(NODE_ENV === 'development' ? 'http://localhost:3000' : `file://${libpath.join(__dirname, 'dst/index.html')}`);
-	w.on('closed', () => { browserWindow = null; });
+	w.loadURL(
+		NODE_ENV === 'development'
+			? 'http://localhost:3000'
+			: `file://${libpath.join(__dirname, 'dst/index.html')}`
+	);
+	w.on('closed', () => {
+		browserWindow = null;
+	});
 
 	browserWindow = w;
 };

@@ -123,6 +123,7 @@ module.exports = (env, { mode }) => {
 		resolve: {
 			extensions: ['.js', '.jsx']
 		},
+		target: 'electron-renderer',
 		plugins,
 		devServer: {
 			hot: true,

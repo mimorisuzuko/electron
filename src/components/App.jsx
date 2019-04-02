@@ -9,9 +9,7 @@ class App extends Component {
 	}
 
 	render() {
-		return (
-			<div styleName='base'>Hello, World from React!</div>
-		);
+		return <div styleName='base'>Hello, World from React!</div>;
 	}
 }
 
