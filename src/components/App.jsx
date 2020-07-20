@@ -1,25 +1,17 @@
-import React, { Component } from 'react';
-import autobind from 'autobind-decorator';
+import React from 'react';
 import { css } from 'emotion';
 
-class App extends Component {
-    @autobind
-    onClick() {
-        console.log('Yeah!');
-    }
-
-    render() {
-        return (
-            <div
-                className={css({
-                    backgroundColor: 'gray'
-                })}
-                onClick={this.onClick}
-            >
-                Hello, World from React!
-            </div>
-        );
-    }
-}
+const App = () => {
+    return (
+        <div
+            onClick={() => {
+                console.log('Click');
+            }}
+            className={css({ width: '100%', height: '100%' })}
+        >
+            Hello
+        </div>
+    );
+};
 
 export default App;

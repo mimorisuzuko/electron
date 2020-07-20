@@ -45,6 +45,13 @@
 		"jsx-quotes": [
 			"error",
 			"prefer-single"
+		],
+		"react/self-closing-comp": [
+			"error",
+			{
+				"component": true,
+				"html": true
+			}
 		]
 	}
 }
