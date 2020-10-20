@@ -45,7 +45,6 @@ module.exports = (env, { mode }) => {
               ],
         output: {
             path: libpath.join(__dirname, dst),
-            publicPath: 'http://localhost:3000/',
             filename: '[name].js'
         },
         module: {
